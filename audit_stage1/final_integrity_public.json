@@ -1,0 +1,92 @@
+{
+  "status": "PASS",
+  "started": "2026-10-23T01:33:20.398460+08:00",
+  "finished": "2026-10-23T01:34:05.953252+08:00",
+  "purpose": "Verify frozen engineering baseline integrity after stage-1 read-only audit",
+  "source_files": {
+    "status": "PASS",
+    "manifest_count": 3126,
+    "unique_paths": 3126,
+    "checked_bytes": 961923327,
+    "mismatches": [],
+    "manifest_sha256": "0546099d91d878779c3ee76843bff364632e8de870f0567782e9f5222f6b6a06"
+  },
+  "snapshot": {
+    "status": "PASS",
+    "bytes": 962511719,
+    "sha256": "9d86b0b811214f05446a872194310b35516b297169ca0f529a41eb25e24a2d77",
+    "method": "Full ZIP-file SHA256 and byte-count comparison to baseline_v0/record.json; archive entries were individually verified at creation"
+  },
+  "environment": {
+    "status": "PASS",
+    "command": ".venv/Scripts/python.exe -m pip freeze --all",
+    "returncode": 0,
+    "frozen_package_count": 52,
+    "current_package_count": 52,
+    "added_or_changed_entries": [],
+    "removed_or_changed_entries": [],
+    "stderr": "",
+    "method": "Compare sorted nonempty pip-freeze entries; runtime binaries not byte-for-byte attested"
+  },
+  "saved_metrics": {
+    "status": "PASS",
+    "metrics_report_sha256": "eb40ae3468b5267b6df6f26bb9b007e2daea18297d1821f6eeaa1eb73ca6330a",
+    "inputs": {
+      "train": {
+        "sha256": "25ca64273c01a4065a51f49db8c055cc4619c48ae10abb8bb81e51076baadf1c",
+        "matches_record": true
+      },
+      "evaluate": {
+        "sha256": "45a73460a2a31fef489b683b477b8b5c7f9945186bf153adade982881e5f7a10",
+        "matches_record": true
+      }
+    },
+    "independent_checks": {
+      "recorded_28_assertions_pass": true,
+      "saved_inputs_hash_match": true,
+      "ten_by_ten_count_matrix": true,
+      "count_matrix_totals_10": true,
+      "class_support_matches": true,
+      "prediction_counts_match": true,
+      "metrics_arithmetic_matches": true,
+      "ten_finite_losses": true,
+      "mean_loss_matches": true,
+      "validation_loss_unavailable_explicit": true,
+      "all_four_metric_figures_exist": true
+    },
+    "recomputed_metrics": {
+      "acc/top1": 0.2,
+      "acc/top5": 0.8,
+      "acc/mean1": 0.2
+    },
+    "mean_training_loss": 2.590540552139282,
+    "figures": {
+      "baseline_v0_loss.png": {
+        "exists": true,
+        "bytes": 93347,
+        "sha256": "44c12c1449405179f65a653f1135e89dfe4526be44426cfbb02e60c4eff09eaa"
+      },
+      "baseline_v0_loss.svg": {
+        "exists": true,
+        "bytes": 17767,
+        "sha256": "c4b5826754002ead01da754ec4367b62df87b2bd32370f3d3f4910ba6ba28a6b"
+      },
+      "baseline_v0_confusion.png": {
+        "exists": true,
+        "bytes": 148392,
+        "sha256": "7698800776c51abe56ab07f97a074d03be2ce5148c6deaf703f9ea05870df8f7"
+      },
+      "baseline_v0_confusion.svg": {
+        "exists": true,
+        "bytes": 67386,
+        "sha256": "603b35c9e3bef74476df9b32964fefb5092e1dd24d977e04401a6d4ebabdbf95"
+      }
+    },
+    "scope": "Review stored assertion statuses and independently recompute aggregate arithmetic; no new model inference or training"
+  },
+  "limitations": [
+    "Integrity does not establish original-video identity, label semantics, or source-independent validation.",
+    "Top-1 20% is an engineering-split result, not a paper reproduction result or generalization estimate.",
+    "Version-list equality does not prove every environment binary is unchanged; snapshot contains version records, not a complete portable environment."
+  ]
+}

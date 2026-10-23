@@ -1,0 +1,286 @@
+{
+  "status": "PASS",
+  "created": "2026-10-22T22:39:31.827963+08:00",
+  "purpose": "Arithmetic consistency check of saved engineering baseline evidence; not an independent validation experiment",
+  "runtime": {
+    "numpy": "1.26.4",
+    "matplotlib": "3.9.4"
+  },
+  "recorded_training": {
+    "epochs": 1,
+    "iterations": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "loss": [
+      2.249542474746704,
+      2.5392818450927734,
+      2.308232307434082,
+      2.2460896968841553,
+      2.412583351135254,
+      2.397465705871582,
+      2.6922903060913086,
+      3.03153920173645,
+      2.994609832763672,
+      3.033770799636841
+    ],
+    "mean_loss": 2.590540552139282,
+    "validation_loss_available": false
+  },
+  "recomputed_engineering_metrics": {
+    "acc/top1": 0.2,
+    "acc/top5": 0.8,
+    "acc/mean1": 0.2
+  },
+  "count_confusion_matrix": [
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0
+    ]
+  ],
+  "limitations": [
+    "No model execution or new training performed; saved probabilities and losses are the evidence inputs.",
+    "Source sessions, persons and original-video independence are unconfirmed. This script does not establish a trustworthy split.",
+    "Exactly one engineering-validation sample per class; metrics do not establish generalization or paper reproduction.",
+    "Ten loss points from one epoch do not establish convergence, overfitting success or a multi-epoch trend.",
+    "Class strings are reproduced as recorded, not adjudicated semantic ground truth; label 0 is named anya_mopping while clip paths use an_mopping."
+  ],
+  "assertions": [
+    {
+      "assertion": "Both saved runs report PASS",
+      "status": "PASS"
+    },
+    {
+      "assertion": "Exactly ten recorded iterations, numbered 1 through 10",
+      "status": "PASS"
+    },
+    {
+      "assertion": "All ten recorded training losses are finite",
+      "status": "PASS"
+    },
+    {
+      "assertion": "Saved run contains one training epoch",
+      "status": "PASS"
+    },
+    {
+      "assertion": "Each saved total loss equals the saved classification loss",
+      "status": "PASS"
+    },
+    {
+      "assertion": "Training and evaluation record the same configuration hash",
+      "status": "PASS"
+    },
+    {
+      "assertion": "Training and evaluation record the same checkpoint hash",
+      "status": "PASS"
+    },
+    {
+      "assertion": "Saved evaluation contains ten clips and ten probabilities per clip",
+      "status": "PASS"
+    },
+    {
+      "assertion": "All saved probabilities are finite",
+      "status": "PASS"
+    },
+    {
+      "assertion": "All saved probabilities are within [0, 1]",
+      "status": "PASS"
+    },
+    {
+      "assertion": "Probability row sums equal one within absolute tolerance 1e-6",
+      "status": "PASS"
+    },
+    {
+      "assertion": "Engineering validation contains exactly one sample for every class",
+      "status": "PASS"
+    },
+    {
+      "assertion": "Saved evaluation contains ten distinct clip path strings",
+      "status": "PASS"
+    },
+    {
+      "assertion": "Saved true class strings agree with the saved integer-to-class map",
+      "status": "PASS"
+    },
+    {
+      "assertion": "Saved clip labels and frame counts agree with the evaluation annotation summary",
+      "status": "PASS"
+    },
+    {
+      "assertion": "Training and reloaded evaluation use the same saved validation summary",
+      "status": "PASS"
+    },
+    {
+      "assertion": "No equal probability values within a clip; top-k tie policy does not affect this result",
+      "status": "PASS"
+    },
+    {
+      "assertion": "Probability argmax agrees with every saved predicted label",
+      "status": "PASS"
+    },
+    {
+      "assertion": "Saved predicted class strings agree with the saved integer-to-class map",
+      "status": "PASS"
+    },
+    {
+      "assertion": "Count confusion matrix totals ten samples",
+      "status": "PASS"
+    },
+    {
+      "assertion": "Recomputed count confusion matrix equals the saved matrix",
+      "status": "PASS"
+    },
+    {
+      "assertion": "Recomputed acc/top1 agrees with train result within absolute tolerance 1e-12",
+      "status": "PASS"
+    },
+    {
+      "assertion": "Recomputed acc/top1 agrees with evaluate result within absolute tolerance 1e-12",
+      "status": "PASS"
+    },
+    {
+      "assertion": "Recomputed acc/top5 agrees with train result within absolute tolerance 1e-12",
+      "status": "PASS"
+    },
+    {
+      "assertion": "Recomputed acc/top5 agrees with evaluate result within absolute tolerance 1e-12",
+      "status": "PASS"
+    },
+    {
+      "assertion": "Recomputed acc/mean1 agrees with train result within absolute tolerance 1e-12",
+      "status": "PASS"
+    },
+    {
+      "assertion": "Recomputed acc/mean1 agrees with evaluate result within absolute tolerance 1e-12",
+      "status": "PASS"
+    },
+    {
+      "assertion": "Both input result JSON files remain byte-for-byte unchanged",
+      "status": "PASS"
+    }
+  ]
+}
