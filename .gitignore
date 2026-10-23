@@ -47,3 +47,7 @@ audit_stage1/*.log
 audit_stage1/figures/*
 !audit_stage1/figures/baseline_v0_loss.svg
 !audit_stage1/figures/baseline_v0_confusion.svg
+audit_stage2/*.json
+!audit_stage2/diagnostic_summary.json
+audit_stage2/*.jsonl
+audit_stage2/*.log

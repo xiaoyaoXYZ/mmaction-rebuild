@@ -1,0 +1,166 @@
+{
+  "status": "PASS",
+  "date": "2026-10-23",
+  "scope": "Fixed TRAIN input memorization diagnostic; no independent validation, generalization, MAE or paper reproduction claim. Existing integer labels are used without certifying action semantics or source chronology.",
+  "initial_mean_ce": 2.3456752548292403,
+  "final_mean_ce": 0.0020973068940554973,
+  "updates": 50,
+  "parameters": 27858160,
+  "memorization_status": "observed_within_budget",
+  "criterion": "Both fixed training inputs correct at each of the last three scheduled evaluations; final mean CE below initial mean CE",
+  "evaluations": [
+    {
+      "step": 0,
+      "mean_ce": 2.3456752548292403,
+      "correct": 0,
+      "total": 2
+    },
+    {
+      "step": 5,
+      "mean_ce": 1.048913036146775,
+      "correct": 1,
+      "total": 2
+    },
+    {
+      "step": 10,
+      "mean_ce": 0.28808752327380505,
+      "correct": 2,
+      "total": 2
+    },
+    {
+      "step": 15,
+      "mean_ce": 0.10803562726355662,
+      "correct": 2,
+      "total": 2
+    },
+    {
+      "step": 20,
+      "mean_ce": 0.04084448241043923,
+      "correct": 2,
+      "total": 2
+    },
+    {
+      "step": 25,
+      "mean_ce": 0.01592324996799639,
+      "correct": 2,
+      "total": 2
+    },
+    {
+      "step": 30,
+      "mean_ce": 0.007334943693617307,
+      "correct": 2,
+      "total": 2
+    },
+    {
+      "step": 35,
+      "mean_ce": 0.004403198418247217,
+      "correct": 2,
+      "total": 2
+    },
+    {
+      "step": 40,
+      "mean_ce": 0.0031385388200511396,
+      "correct": 2,
+      "total": 2
+    },
+    {
+      "step": 45,
+      "mean_ce": 0.0024791523295057483,
+      "correct": 2,
+      "total": 2
+    },
+    {
+      "step": 50,
+      "mean_ce": 0.0020973068940554973,
+      "correct": 2,
+      "total": 2
+    }
+  ],
+  "training_loss": [
+    2.3966214656829834,
+    2.3282313346862793,
+    1.8481329679489136,
+    1.9382827281951904,
+    1.1046981811523438,
+    1.3577611446380615,
+    0.5722672939300537,
+    0.8148093223571777,
+    0.359754741191864,
+    0.4220842123031616,
+    0.30716419219970703,
+    0.2130834460258484,
+    0.2628031075000763,
+    0.12928983569145203,
+    0.17288953065872192,
+    0.09865589439868927,
+    0.0908295065164566,
+    0.08303836733102798,
+    0.04630839824676514,
+    0.06680303066968918,
+    0.02613961510360241,
+    0.04862741380929947,
+    0.01682613231241703,
+    0.0327579528093338,
+    0.012074356898665428,
+    0.021465713158249855,
+    0.009344176389276981,
+    0.014272748492658138,
+    0.007594759110361338,
+    0.00986899621784687,
+    0.0063722520135343075,
+    0.007166513241827488,
+    0.00546295614913106,
+    0.005469002760946751,
+    0.004756801761686802,
+    0.004368999041616917,
+    0.004193204455077648,
+    0.003632496576756239,
+    0.0037347583565860987,
+    0.003123525995761156,
+    0.0033568956423550844,
+    0.002762194722890854,
+    0.0030423568096011877,
+    0.0024990777019411325,
+    0.0027787189465016127,
+    0.002303329762071371,
+    0.002556153805926442,
+    0.0021548878867179155,
+    0.002366838976740837,
+    0.0020402108784765005
+  ],
+  "all_losses_and_gradients_finite": true,
+  "all_tracked_backbone_and_head_updates_nonzero": true,
+  "strict_reload_probability_difference": 0.0,
+  "checkpoint_sha256": "dfcde43d7b24de052138b6a413161929fca03fc4cb7a5635bc9fb0f72d380b40",
+  "checkpoint_kept_local": true,
+  "baseline_before": {
+    "files_checked": 3126,
+    "mismatches": [],
+    "package_versions_unchanged": true,
+    "package_count": 52
+  },
+  "baseline_after": {
+    "files_checked": 3126,
+    "mismatches": [],
+    "package_versions_unchanged": true,
+    "package_count": 52
+  },
+  "versions": {
+    "torch": "2.1.2+cu118",
+    "torchvision": "0.16.2+cu118",
+    "mmaction2": "1.2.0",
+    "mmengine": "0.10.7",
+    "mmcv-lite": "2.1.0",
+    "numpy": "1.26.4"
+  },
+  "optimization_seconds": 21.573190800000006,
+  "training_peak_allocated_bytes": 542360576,
+  "executed_runner_sha256": "d09e9d89c4fa3f2e293a07c82b44987c599304faddc726def3f625c953678d54",
+  "current_runner_sha256": "a60d6a87d058c9f5ccb0b00ee9e57716e5034e9e5f74731e953b8d43c0c3b833",
+  "config_sha256": "93db388933e93ff0a38ae185bc8e89698d1f6d41f3c05260d9130a94a6e2cb8c",
+  "result_sha256": "6f742569d560791852763ff4d476534c71aa0cc4aa719a0cb940b9b551de2602",
+  "post_run_code_changes": [
+    "Added nonfinite-loss check before backward/update",
+    "Release final log-variable graph before strict reload; no new training performed after these guards"
+  ]
+}

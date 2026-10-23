@@ -3,13 +3,13 @@
   "files": [
     {
       "path": ".gitignore",
-      "bytes": 634,
-      "sha256": "b2b1234f305a42ce5a880b82deecbd5307a18281f32920633a4365d8700761ff"
+      "bytes": 732,
+      "sha256": "361d54b1b3a750d3443da0fd76333bf65fd5bc8402a309936ff26484c5b1ea15"
     },
     {
       "path": "README.md",
-      "bytes": 5961,
-      "sha256": "4a3dc987754ae274642f721ae91976a312152fcf9a0f2f788e537c1bebeded9b"
+      "bytes": 6529,
+      "sha256": "5f87a74dc0382cf4d69267fb68e2f54ab85e289f8dbb8f37c436a97489d3225b"
     },
     {
       "path": "audit_stage1/audit_frames.py",
@@ -23,8 +23,8 @@
     },
     {
       "path": "audit_stage1/build_publication.py",
-      "bytes": 13777,
-      "sha256": "db72306c652f05ba08c108fa7bbe2357b101a64f06ec1622520dc557e068b201"
+      "bytes": 14778,
+      "sha256": "61bdb7109ecadf1d39ac96a0ecc117f691e685edc2a8d87fd211a6b8c41b896c"
     },
     {
       "path": "audit_stage1/complete_audit_records.py",
@@ -34,7 +34,7 @@
     {
       "path": "audit_stage1/figures/baseline_v0_confusion.svg",
       "bytes": 93188,
-      "sha256": "0230e2c5dc4927ebdc8b3d8eb2a8d56e0713201d3b8d8ed215c83987642244cc"
+      "sha256": "a0f367d91bb6098588440001b6a7aa3242a748653f1cbb2afe12682adb7dde05"
     },
     {
       "path": "audit_stage1/figures/baseline_v0_loss.svg",
@@ -72,6 +72,26 @@
       "sha256": "06af151eabbb3b3665ab3a7e7775ec991452598ee21806e8800e2cd2e47a65bd"
     },
     {
+      "path": "audit_stage2/diagnostic_loss.svg",
+      "bytes": 43451,
+      "sha256": "c4c40c220b6dcb6485dd03cfb3837e146b6825fd574f2d224787eb18b8671ccd"
+    },
+    {
+      "path": "audit_stage2/diagnostic_report.md",
+      "bytes": 4899,
+      "sha256": "fcff9b520baee0a87a1309e2108f4df0067f26141855c82d9f932c354a0b473a"
+    },
+    {
+      "path": "audit_stage2/diagnostic_summary.json",
+      "bytes": 4624,
+      "sha256": "eae24cd8975f1f4f747fa7cbba190ce6ce005ccda7ef89cf21496b37e1c39c9e"
+    },
+    {
+      "path": "audit_stage2/finish_diagnostic_report.py",
+      "bytes": 7926,
+      "sha256": "b11f26c1a2745e02a1a62407dce7c41f6c1e929b920b6615e3081aa7ecc270e2"
+    },
+    {
       "path": "baseline_v0/record_public.json",
       "bytes": 832,
       "sha256": "f373692dd2c68dc2b755cae0087bfe2679cbd9b01ffa9404cb849c33098d05af"
@@ -82,14 +102,19 @@
       "sha256": "4937bab892f8849d6adfb974c14ca8ece1d67e6d339c60bd9a6a5c8316648604"
     },
     {
+      "path": "configs/swin_tiny_two_sample_diagnostic.py",
+      "bytes": 1036,
+      "sha256": "93db388933e93ff0a38ae185bc8e89698d1f6d41f3c05260d9130a94a6e2cb8c"
+    },
+    {
       "path": "data_audit.md",
       "bytes": 16205,
       "sha256": "16402f001293893dad0ab4e7059fcc708e7845fc4e6d80d15475e8275ad29b77"
     },
     {
       "path": "next_round_tasks.md",
-      "bytes": 5338,
-      "sha256": "13474b02d798faba54b9fd3b52f3d286ac203a3b3ef7c7a71f6bcc8ecdd59a28"
+      "bytes": 5519,
+      "sha256": "4c00635a344e92fa3fe8661a955d0203b7114ab05155db1713617bc1886e18b7"
     },
     {
       "path": "reproduction_gap_analysis.md",
@@ -140,8 +165,13 @@
       "path": "scripts/run_baseline.py",
       "bytes": 23784,
       "sha256": "d53c8f5066f5df9a8f0f0893d7a328eb482868526c045deec11e40d7e520b3b8"
+    },
+    {
+      "path": "scripts/run_two_sample_diagnostic.py",
+      "bytes": 14828,
+      "sha256": "a60d6a87d058c9f5ccb0b00ee9e57716e5034e9e5f74731e953b8d43c0c3b833"
     }
   ],
-  "file_count_excluding_this_manifest": 28,
-  "total_bytes_excluding_this_manifest": 282432
+  "file_count_excluding_this_manifest": 34,
+  "total_bytes_excluding_this_manifest": 361044
 }

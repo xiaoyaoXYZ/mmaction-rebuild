@@ -23,6 +23,12 @@ FILES = [
     'data_audit.md', 'reproduction_gap_analysis.md', 'next_round_tasks.md',
     'audit_stage1/figures/baseline_v0_loss.svg',
     'audit_stage1/figures/baseline_v0_confusion.svg',
+    'configs/swin_tiny_two_sample_diagnostic.py',
+    'scripts/run_two_sample_diagnostic.py',
+    'audit_stage2/finish_diagnostic_report.py',
+    'audit_stage2/diagnostic_report.md',
+    'audit_stage2/diagnostic_summary.json',
+    'audit_stage2/diagnostic_loss.svg',
 ]
 
 README = r'''# MMAction2 工业动作分类基线与第一阶段审计
@@ -30,6 +36,10 @@ README = r'''# MMAction2 工业动作分类基线与第一阶段审计
 已在 NVIDIA MX350 2 GB 上完成分类 smoke、1 epoch 训练/工程验证、权重保存与严格重载。当前模型是随机初始化的 **Video Swin Tiny + I3DHead（10 类）**，MAE、Tube Masking、MIS 尚未实现。
 
 **现有 20% Top-1（2/10）仅是工程流程记录，不能解释为论文复现或泛化性能。** 当前 20 个片段的原始视频来源均未知，3 对片段含 26 对完全相同帧；截去验证采样前缀之后的重复区间不等于来源独立。数据文件名 `ucf101.zip` 对应本项目工业帧集合，不是公开 UCF101。
+
+## 后续训练诊断（2026-10-23）
+
+已完成最多 50 次更新的两样本固定输入诊断：平均交叉熵从 2.345675 降至 0.002097，第 10～50 次计划检查均为 2/2；权重 strict 重载后预测差异为 0。冻结基线 3126 个文件、52 项环境版本均未变。详情见 [诊断报告](audit_stage2/diagnostic_report.md)和[数值曲线](audit_stage2/diagnostic_loss.svg)。这是训练输入记忆检查，没有新增独立验证或自监督训练。仓库已于 2026-10-23 复查为 private。
 
 ## 审计交付
 
@@ -46,7 +56,7 @@ README = r'''# MMAction2 工业动作分类基线与第一阶段审计
 
 ## 发布范围
 
-本仓库只包含显式白名单中的代码、配置、包版本、报告、汇总数值及两张 SVG 图。**整个 data/、原视频、样例帧、逐帧指纹、原始标注文件、模型权重、环境二进制、原始日志、含数据的快照和私人来源工作簿均未上传。** 完整基线和审计证据保留在本机；文档中的本地证据名称不表示这些文件已发布。原始数据不提供下载地址。
+本仓库只包含显式白名单中的代码、配置、包版本、报告、汇总数值及数值 SVG 图。**整个 data/、原视频、样例帧、逐帧指纹、原始标注文件、模型权重、环境二进制、原始日志、含数据的快照和私人来源工作簿均未上传。** 完整基线和审计证据保留在本机；文档中的本地证据名称不表示这些文件已发布。原始数据不提供下载地址。
 
 发布文件清单及 SHA-256 见 [PUBLICATION_MANIFEST.json](PUBLICATION_MANIFEST.json)。该清单记录除其自身外的所有发布文件。仓库不是完整数据/权重备份，克隆后不能立即训练；需要具备合法访问权限的本地数据。
 
@@ -90,7 +100,7 @@ prepare_data.py 保留原运行时的 ARCHIVE 路径常量，迁移到其他电�
 & .\.venv\Scripts\python.exe .\scripts\run_baseline.py evaluate --checkpoint .\work_dirs\YOUR_RUN\epoch_1.pth
 ```
 
-每次使用新输出目录，旧结果不会被覆盖。run_experiment.ps1 会依次做 smoke、训练和重载，审计或只读检查时不要执行它。本轮仅保全、审计和数值核对，没有新的训练。
+每次使用新输出目录，旧结果不会被覆盖。run_experiment.ps1 会依次做 smoke、训练和重载，审计或只读检查时不要执行它。第一阶段只做保全、审计和数值核对；后续完成的两样本训练见上方诊断报告。
 
 ## 审计工具的本地依赖
 
@@ -148,6 +158,10 @@ audit_stage1/*.log
 audit_stage1/figures/*
 !audit_stage1/figures/baseline_v0_loss.svg
 !audit_stage1/figures/baseline_v0_confusion.svg
+audit_stage2/*.json
+!audit_stage2/diagnostic_summary.json
+audit_stage2/*.jsonl
+audit_stage2/*.log
 '''
 
 def digest(data):
@@ -180,6 +194,7 @@ def main():
     import matplotlib
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
+    matplotlib.rcParams['svg.hashsalt'] = 'baseline-v0-publication'
     import numpy as np
     matrix = np.array(metrics['count_confusion_matrix'])
     labels = [f'{i}: {metrics["class_map_as_recorded"][str(i)]}' for i in range(10)]
