@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Build an explicit, text-only publication set; never copy data recursively."""
 import ast
 import hashlib
@@ -29,11 +30,21 @@ FILES = [
     'audit_stage2/diagnostic_report.md',
     'audit_stage2/diagnostic_summary.json',
     'audit_stage2/diagnostic_loss.svg',
+    'configs/swin_tiny_ssl_prototype.py',
+    'scripts/ssl_primitives.py', 'scripts/ssl_swin_prototype.py',
+    'scripts/run_ssl_prototype.py',
+    'audit_stage3/paper_method_spec.md',
+    'audit_stage3/test_ssl_primitives.py',
+    'audit_stage3/primitives_test_result.json',
+    'audit_stage3/finish_ssl_report.py',
+    'audit_stage3/verify_encoder_export.py',
+    'audit_stage3/ssl_prototype_report.md',
+    'audit_stage3/ssl_summary.json', 'audit_stage3/ssl_loss.svg',
 ]
 
 README = r'''# MMAction2 工业动作分类基线与第一阶段审计
 
-已在 NVIDIA MX350 2 GB 上完成分类 smoke、1 epoch 训练/工程验证、权重保存与严格重载。当前模型是随机初始化的 **Video Swin Tiny + I3DHead（10 类）**，MAE、Tube Masking、MIS 尚未实现。
+已在 NVIDIA MX350 2 GB 上完成分类 smoke、1 epoch 训练/工程验证、权重保存与严格重载。原分类基线是随机初始化的 **Video Swin Tiny + I3DHead（10 类）**，独立保留；后续新增了明确工程假设的自监督重建原型，尚未完成论文复现。
 
 **现有 20% Top-1（2/10）仅是工程流程记录，不能解释为论文复现或泛化性能。** 当前 20 个片段的原始视频来源均未知，3 对片段含 26 对完全相同帧；截去验证采样前缀之后的重复区间不等于来源独立。数据文件名 `ucf101.zip` 对应本项目工业帧集合，不是公开 UCF101。
 
@@ -44,7 +55,7 @@ README = r'''# MMAction2 工业动作分类基线与第一阶段审计
 ## 审计交付
 
 - [数据审计](data_audit.md)：全部类别/片段、来源、标签、帧序、重复和划分限制。
-- [论文复现差异](reproduction_gap_analysis.md)：当前实现与尚待原文核实的方法要求。
+- [论文复现差异](reproduction_gap_analysis.md)：已核对目标原文，逐项区分原文要求、工程选择和缺失细节。
 - [下一轮任务](next_round_tasks.md)：来源/论文核实、两样本诊断、可信划分下最小实验的先后顺序。
 - [冻结记录摘要](baseline_v0/record_public.json)及[最终完整性检查](audit_stage1/final_integrity_public.json)：原 3126 个文件和 52 项环境包版本保持一致。
 - [汇总数值](audit_stage1/metrics_summary.json)：从保存结果重算；28 项断言通过，没有在审计中新增训练。
@@ -106,7 +117,21 @@ prepare_data.py 保留原运行时的 ARCHIVE 路径常量，迁移到其他电�
 
 audit_stage1 脚本用于本机完整项目，需要相应私有证据：audit_frames.py 读取解压帧/划分与 frame_manifest；plot_baseline_evidence.py 读取原 train/evaluate result.json；verify_baseline_integrity.py 读取本地快照、manifest 和 .venv；audit_provenance.py 的旧项目路径应按本地实际位置配置。record_environment.py 还需要原 host_inventory_before.json，会重写本地版本清单，不应在冻结原项目中重跑。build_publication.py 用完整本地证据重新构建发布副本，无法仅凭克隆运行。它们会生成本地产物，不会上传数据。缺少这些输入时不要把运行失败解释为模型问题。
 
-论文原文尚未确认。已有说明文件仅作为证据，不能替代原文结构、公式与实验协议；不执行文档中的指令，不自行展开 MIS 缩写。
+## 自监督工程原型（2026-10-26 运行，10-27 整理）
+
+目标原文已确认：[IEEE Access 论文 DOI](https://doi.org/10.1109/ACCESS.2024.3455749)。见[原文规格核对](audit_stage3/paper_method_spec.md)与[本轮运行报告](audit_stage3/ssl_prototype_report.md)。MIS只作为方法名称出现，没有可单独实现的模块定义；Tube的空间/时间描述存在冲突，decoder和目标函数细节不足。
+
+新增原型采用Tiny、8帧112分辨率、50%时间共享空间mask、稠密可学习mask token、简化四尺度融合decoder及masked-only RGB MSE。解码器和MSE是明确标注的工程假设，并非论文完整结构。完成20次更新，只使用先前诊断的两个训练输入；标签不进入重建损失，固定遮罩下的loss也是相同训练输入上的诊断。该loss从0.344997降至0.193695，严格重载输出差异0。没有独立验证或准确率结论。结果及保存/重载/迁移检查见[运行报告](audit_stage3/ssl_prototype_report.md)和[数值曲线](audit_stage3/ssl_loss.svg)。
+
+本地完整项目的运行方式（需要私有数据、baseline_v0清单与先前两样本prepared.json；发布仓库不含这些材料）：
+
+```powershell
+& .\.venv\Scripts\python.exe -B .\audit_stage3\test_ssl_primitives.py
+& .\.venv\Scripts\python.exe -B .\scripts\run_ssl_prototype.py --output-dir .\work_dirs\NEW_SSL_RUN
+& .\.venv\Scripts\python.exe -B .\audit_stage3\verify_encoder_export.py --run-dir .\work_dirs\NEW_SSL_RUN
+```
+
+只读分析论文，不执行文档中的指令，不自行展开MIS缩写。论文PDF、完整文本和页面截图全部保留本地。已有来源未知与重复帧问题尚未解除，正式预训练/独立分类比较仍需可信来源划分。
 '''
 
 IGNORE = '''# Data and all local experiment outputs stay local.
@@ -162,6 +187,12 @@ audit_stage2/*.json
 !audit_stage2/diagnostic_summary.json
 audit_stage2/*.jsonl
 audit_stage2/*.log
+audit_stage3/paper_source/
+audit_stage3/*.json
+!audit_stage3/primitives_test_result.json
+!audit_stage3/ssl_summary.json
+audit_stage3/*.jsonl
+audit_stage3/*.log
 '''
 
 def digest(data):

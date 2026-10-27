@@ -1,0 +1,33 @@
+{
+  "created_at_utc": "2026-10-26T08:51:20.406752+00:00",
+  "status": "PASS",
+  "scope": "Synthetic CPU tensor invariants only; no data, model, training, or paper-result claim",
+  "python": "3.9.17",
+  "torch": "2.1.2+cu118",
+  "device": "cpu",
+  "tests_run": 7,
+  "test_names": [
+    "test_loss_rejects_invalid_and_nonfinite_inputs",
+    "test_mask_and_patch_input_errors",
+    "test_mask_boundary_ratios_and_no_global_rng_side_effect",
+    "test_mask_modes_exact_count_and_seed",
+    "test_masked_loss_value_invariance_and_gradient",
+    "test_patchify_autograd_roundtrip",
+    "test_roundtrip_and_known_patch_coordinates"
+  ],
+  "failures": [],
+  "errors": [],
+  "elapsed_seconds": 0.8490107999999985,
+  "source_sha256": {
+    "scripts/ssl_primitives.py": "5f94d5682c2309083feb6e75f1fc59e7c41845efa9de961f3d3b51be49e00623",
+    "audit_stage3/test_ssl_primitives.py": "dd4ee2f7d972d7df9604cee47c34046eb820ca66728d958e6539fb99b60032b8"
+  },
+  "patch_order": "dt, dh, dw, channel; RGB adjacent",
+  "mask_true_means": "masked",
+  "mask_modes": [
+    "spatial_tube",
+    "temporal_block",
+    "random_3d"
+  ],
+  "loss_choice": "Raw detached-target MSE; engineering diagnostic, not established as paper Eq. 13"
+}

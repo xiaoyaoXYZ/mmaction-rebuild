@@ -51,3 +51,9 @@ audit_stage2/*.json
 !audit_stage2/diagnostic_summary.json
 audit_stage2/*.jsonl
 audit_stage2/*.log
+audit_stage3/paper_source/
+audit_stage3/*.json
+!audit_stage3/primitives_test_result.json
+!audit_stage3/ssl_summary.json
+audit_stage3/*.jsonl
+audit_stage3/*.log

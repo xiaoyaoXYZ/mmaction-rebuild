@@ -3,13 +3,13 @@
   "files": [
     {
       "path": ".gitignore",
-      "bytes": 732,
-      "sha256": "361d54b1b3a750d3443da0fd76333bf65fd5bc8402a309936ff26484c5b1ea15"
+      "bytes": 892,
+      "sha256": "881d81d3a2af9094f2e06b05fe758a4d1b86b4b0e7945124f56f422b219e02e6"
     },
     {
       "path": "README.md",
-      "bytes": 6529,
-      "sha256": "5f87a74dc0382cf4d69267fb68e2f54ab85e289f8dbb8f37c436a97489d3225b"
+      "bytes": 8201,
+      "sha256": "258e9f42561e629c029ced38e9ac4d14988c826bb716512010ed02e15b7ef15e"
     },
     {
       "path": "audit_stage1/audit_frames.py",
@@ -23,8 +23,8 @@
     },
     {
       "path": "audit_stage1/build_publication.py",
-      "bytes": 14778,
-      "sha256": "61bdb7109ecadf1d39ac96a0ecc117f691e685edc2a8d87fd211a6b8c41b896c"
+      "bytes": 17106,
+      "sha256": "32a416a18be60cb5463126c7d2d342eba52407f457c47c604c4c42337e5b4b9a"
     },
     {
       "path": "audit_stage1/complete_audit_records.py",
@@ -92,6 +92,46 @@
       "sha256": "b11f26c1a2745e02a1a62407dce7c41f6c1e929b920b6615e3081aa7ecc270e2"
     },
     {
+      "path": "audit_stage3/finish_ssl_report.py",
+      "bytes": 21852,
+      "sha256": "5138ea1b16b843eb433bb6e2fbea2bcdfd3ffdb0b0cc714e1263f9703967b531"
+    },
+    {
+      "path": "audit_stage3/paper_method_spec.md",
+      "bytes": 12074,
+      "sha256": "0b275137581e5ad1858132b2f56f7b4a049fd3e8eb6ffa44cbf43ec3925d039b"
+    },
+    {
+      "path": "audit_stage3/primitives_test_result.json",
+      "bytes": 1243,
+      "sha256": "3db7723add39895a4cdc62df92c87f24df57af0d0f73c37021843c744a6baf6b"
+    },
+    {
+      "path": "audit_stage3/ssl_loss.svg",
+      "bytes": 18065,
+      "sha256": "7e8e23b6c7e0a12b624c3d7f65be85df6986ea44f1344b5e57d408f6ab6f4976"
+    },
+    {
+      "path": "audit_stage3/ssl_prototype_report.md",
+      "bytes": 6994,
+      "sha256": "4cdaa566f20a56a50f7bb79fb84af6367047c08c99dc2399c4e5c6f246588774"
+    },
+    {
+      "path": "audit_stage3/ssl_summary.json",
+      "bytes": 6512,
+      "sha256": "06e5eb21883558c1a6734eef26a63dad2ef3d1c13233f2f27f9fcc4e06aff6a1"
+    },
+    {
+      "path": "audit_stage3/test_ssl_primitives.py",
+      "bytes": 9891,
+      "sha256": "dd4ee2f7d972d7df9604cee47c34046eb820ca66728d958e6539fb99b60032b8"
+    },
+    {
+      "path": "audit_stage3/verify_encoder_export.py",
+      "bytes": 4747,
+      "sha256": "b632fc63de23595ff9c3db847f1a81ff38914ba18a9251046c17e10730179548"
+    },
+    {
       "path": "baseline_v0/record_public.json",
       "bytes": 832,
       "sha256": "f373692dd2c68dc2b755cae0087bfe2679cbd9b01ffa9404cb849c33098d05af"
@@ -102,24 +142,29 @@
       "sha256": "4937bab892f8849d6adfb974c14ca8ece1d67e6d339c60bd9a6a5c8316648604"
     },
     {
+      "path": "configs/swin_tiny_ssl_prototype.py",
+      "bytes": 1805,
+      "sha256": "dadfaa120140ee3e156896fd92e2b9ba51e2c713effc19002dc83ca6e8fb2650"
+    },
+    {
       "path": "configs/swin_tiny_two_sample_diagnostic.py",
       "bytes": 1036,
       "sha256": "93db388933e93ff0a38ae185bc8e89698d1f6d41f3c05260d9130a94a6e2cb8c"
     },
     {
       "path": "data_audit.md",
-      "bytes": 16205,
-      "sha256": "16402f001293893dad0ab4e7059fcc708e7845fc4e6d80d15475e8275ad29b77"
+      "bytes": 16707,
+      "sha256": "75be0059e8f72220b87fefae7e067d1bef9de9486cf5d034e8b9d6fa1acd874f"
     },
     {
       "path": "next_round_tasks.md",
-      "bytes": 5519,
-      "sha256": "4c00635a344e92fa3fe8661a955d0203b7114ab05155db1713617bc1886e18b7"
+      "bytes": 10156,
+      "sha256": "727448d422ae01cafbeef549c9b507167fc80cd4731925526a457237473cc533"
     },
     {
       "path": "reproduction_gap_analysis.md",
-      "bytes": 14165,
-      "sha256": "31f91e0821396bc6160bd00689f135d336e878cfb25426204884c15a11aef7f4"
+      "bytes": 18811,
+      "sha256": "45ae9f6e1be33730c1c0f903f802d7961e6012b8b2324c0e560b4999e3faa75d"
     },
     {
       "path": "requirements-lock.txt",
@@ -167,11 +212,26 @@
       "sha256": "d53c8f5066f5df9a8f0f0893d7a328eb482868526c045deec11e40d7e520b3b8"
     },
     {
+      "path": "scripts/run_ssl_prototype.py",
+      "bytes": 15668,
+      "sha256": "ed790f7d6ca24d7d9edd6d1f15bf34fe783eefb28c7a02eac053b41802365637"
+    },
+    {
       "path": "scripts/run_two_sample_diagnostic.py",
       "bytes": 14828,
       "sha256": "a60d6a87d058c9f5ccb0b00ee9e57716e5034e9e5f74731e953b8d43c0c3b833"
+    },
+    {
+      "path": "scripts/ssl_primitives.py",
+      "bytes": 7100,
+      "sha256": "5f94d5682c2309083feb6e75f1fc59e7c41845efa9de961f3d3b51be49e00623"
+    },
+    {
+      "path": "scripts/ssl_swin_prototype.py",
+      "bytes": 2754,
+      "sha256": "6bc0b6ccb9d3795421807383ca5152ee476740925198a4e129baa85801fbfcca"
     }
   ],
-  "file_count_excluding_this_manifest": 34,
-  "total_bytes_excluding_this_manifest": 361044
+  "file_count_excluding_this_manifest": 46,
+  "total_bytes_excluding_this_manifest": 483694
 }

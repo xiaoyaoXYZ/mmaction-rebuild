@@ -1,0 +1,152 @@
+{
+  "status": "PASS",
+  "report_date": "2026-10-27",
+  "run_id": "ssl_proto_20261026_01",
+  "started": "2026-10-26T16:51:38.470355+08:00",
+  "finished": "2026-10-26T16:55:30.238672+08:00",
+  "scope": "Engineering prototype on the same two TRAIN inputs; no independent validation, accuracy or paper reproduction claim",
+  "paper_doi": "10.1109/ACCESS.2024.3455749",
+  "updates": 20,
+  "parameters": 27925782,
+  "mask_mode": "spatial_tube",
+  "mask_ratio": 0.5,
+  "masked_tokens_per_input": 1568,
+  "engineering_assumptions": [
+    "Official MMAction2 Swin-Tiny, 8x112x112, not paper Base/16x224x224",
+    "Time-shared spatial patch mask follows Eq11/Fig7-8 interpretation; Eq16 temporal-block conflict unresolved",
+    "All RGB channels of each patch masked together; learned dense mask vector after patch embedding",
+    "Four normalized stage maps aligned by nearest-neighbor interpolation to the initial token grid",
+    "Concatenate channels then Linear(1440,48), GELU, Linear(48,96); no decoder transformer blocks",
+    "C/2 interpreted as half initial Tiny embedding width, not confirmed by original paper",
+    "Detached RGB/255 target, no per-patch target normalization, masked-only element MSE; D/h/T unspecified in paper",
+    "AdamW 1e-4, weight_decay .05, constant LR, batch 1, 20 updates; not paper .003/warmup/cosine/150 epochs",
+    "Fixed training clips/crops, fresh training masks; fixed diagnostic masks on the same inputs",
+    "No K400, no validation inputs, no class labels in reconstruction loss, no source-independence claim"
+  ],
+  "initial_fixed_train_mean_mse": 0.34499678015708923,
+  "final_fixed_train_mean_mse": 0.19369472563266754,
+  "minimum_fixed_train_mean_mse": 0.19369472563266754,
+  "minimum_update_mse": 0.18559648096561432,
+  "last_update_mse": 0.19540348649024963,
+  "fixed_train_evaluations": [
+    {
+      "step": 0,
+      "mean_mse": 0.34499678015708923
+    },
+    {
+      "step": 5,
+      "mean_mse": 0.24059602618217468
+    },
+    {
+      "step": 10,
+      "mean_mse": 0.2189773991703987
+    },
+    {
+      "step": 15,
+      "mean_mse": 0.2043633908033371
+    },
+    {
+      "step": 20,
+      "mean_mse": 0.19369472563266754
+    }
+  ],
+  "update_losses": [
+    0.31364765763282776,
+    0.28295329213142395,
+    0.2434873729944229,
+    0.2611631155014038,
+    0.2208997756242752,
+    0.26093098521232605,
+    0.22230899333953857,
+    0.250760018825531,
+    0.21413342654705048,
+    0.22931450605392456,
+    0.20864659547805786,
+    0.23085324466228485,
+    0.19749364256858826,
+    0.21735133230686188,
+    0.18812507390975952,
+    0.21060018241405487,
+    0.18734882771968842,
+    0.20330600440502167,
+    0.18559648096561432,
+    0.19540348649024963
+  ],
+  "fixed_train_curve_increases": 0,
+  "all_step_losses_and_gradients_finite": true,
+  "all_tracked_parameters_changed_each_step": true,
+  "all_training_mask_hashes_unique": true,
+  "hidden_input_gradient_max": 0.0,
+  "hidden_pixel_perturb_prediction_max": 0.0,
+  "target_detached": true,
+  "ssl_strict_reload_prediction_max_abs_difference": 0.0,
+  "transfer": {
+    "status": "PASS",
+    "loaded_backbone_key_count": 183,
+    "excluded_source_keys": [
+      "mask_token",
+      "norm0.bias",
+      "norm0.weight",
+      "norm1.bias",
+      "norm1.weight",
+      "norm2.bias",
+      "norm2.weight"
+    ],
+    "missing_backbone_keys": 0,
+    "shape_mismatches": 0,
+    "random_head_unchanged": true,
+    "no_mask_feature_max_abs_difference": 0.0,
+    "classifier_reload_score_max_abs_difference": 0.0,
+    "note": "In-memory backbone migration and full classifier checkpoint reload; no classification fine-tuning or accuracy evaluation"
+  },
+  "independent_encoder_export_reload": {
+    "status": "PASS",
+    "device": "cpu",
+    "loaded_keys": 183,
+    "exact_tensor_matches": 183,
+    "strict_load": "PASS",
+    "evidence_sha256": "70d3148f68657201ddd5cdd69a4210c3c1bbe2328b8aa0fae2ba0c6566856ee4",
+    "verifier_sha256": "b632fc63de23595ff9c3db847f1a81ff38914ba18a9251046c17e10730179548",
+    "note": "Independently read exported file and full SSL checkpoint; strict load into official Tiny backbone and exact tensor comparison"
+  },
+  "baseline_integrity": {
+    "before_files_checked": 3126,
+    "after_files_checked": 3126,
+    "mismatches": 0,
+    "package_count": 52,
+    "package_versions_unchanged": true,
+    "stage2_checkpoint_unchanged": true
+  },
+  "device": "NVIDIA GeForce MX350",
+  "versions": {
+    "torch": "2.1.2+cu118",
+    "torchvision": "0.16.2+cu118",
+    "mmaction2": "1.2.0",
+    "mmengine": "0.10.7",
+    "mmcv-lite": "2.1.0",
+    "numpy": "1.26.4"
+  },
+  "optimization_and_scheduled_evaluation_seconds": 13.822207800000001,
+  "run_record_elapsed_seconds": 231.768317,
+  "training_peak_allocated_bytes": 662303744,
+  "training_peak_reserved_bytes": 685768704,
+  "reload_transfer_peak_allocated_bytes": 662303744,
+  "checkpoint_sha256": "2ffa64d6205a755e454eef08e03b016250f325136de9dcc318d47df49a1defb3",
+  "checkpoint_bytes": 350078218,
+  "encoder_checkpoint_sha256": "c0edf0f05c6e76d03375a3a59a3d6fbe44a397b2b78cf910ac9c63378a8bf2f0",
+  "classifier_checkpoint_sha256": "a0c95c0f197e86351fdf919cef5d859bb644615c41f80367aec12ce30e6cb3a2",
+  "stage2_checkpoint_sha256": "dfcde43d7b24de052138b6a413161929fca03fc4cb7a5635bc9fb0f72d380b40",
+  "checkpoints_kept_local": true,
+  "source_sha256": {
+    "configs/swin_tiny_ssl_prototype.py": "dadfaa120140ee3e156896fd92e2b9ba51e2c713effc19002dc83ca6e8fb2650",
+    "scripts/run_ssl_prototype.py": "ed790f7d6ca24d7d9edd6d1f15bf34fe783eefb28c7a02eac053b41802365637",
+    "scripts/ssl_swin_prototype.py": "6bc0b6ccb9d3795421807383ca5152ee476740925198a4e129baa85801fbfcca",
+    "scripts/ssl_primitives.py": "5f94d5682c2309083feb6e75f1fc59e7c41845efa9de961f3d3b51be49e00623",
+    "scripts/run_two_sample_diagnostic.py": "a60d6a87d058c9f5ccb0b00ee9e57716e5034e9e5f74731e953b8d43c0c3b833",
+    "scripts/run_baseline.py": "d53c8f5066f5df9a8f0f0893d7a328eb482868526c045deec11e40d7e520b3b8",
+    "configs/swin_tiny_two_sample_diagnostic.py": "93db388933e93ff0a38ae185bc8e89698d1f6d41f3c05260d9130a94a6e2cb8c",
+    "configs/swin_tiny_industrial.py": "4937bab892f8849d6adfb974c14ca8ece1d67e6d339c60bd9a6a5c8316648604"
+  },
+  "result_sha256": "3d0955aeae8b59be28eef2395bc03e3e889bbb0cccc59ec75429fcc3ce1acc10",
+  "report_generator_sha256": "5138ea1b16b843eb433bb6e2fbea2bcdfd3ffdb0b0cc714e1263f9703967b531"
+}
